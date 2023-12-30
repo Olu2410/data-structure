@@ -1,0 +1,65 @@
+// Problem 1: Find the sum of all distinct elements from two sets
+
+function findDistinctSum(set1, set2) {
+    // Combine the sets and remove duplicates
+    const combinedSet = Array.from(new Set([...set1, ...set2]));
+
+    // Calculate the sum of distinct elements
+    const sum = combinedSet.reduce((acc, element) => acc + element, 0);
+
+    return sum;
+}
+
+// Example usage
+const set1 = [3, 1, 7, 9];
+const set2 = [2, 4, 1, 9, 3];
+const result = findDistinctSum(set1, set2);
+
+console.log("Output:", result);
+
+
+// Problem 2: Determine if two vectors are orthogonal using Dot Product
+
+function dotProduct(v1, v2) {
+    // Check if the vectors have the same length
+    if (v1.length !== v2.length) {
+        throw new Error("Vectors must have the same length for dot product calculation.");
+    }
+
+    // Calculate the dot product
+    let productSum = 0;
+    for (let i = 0; i < v1.length; i++) {
+        productSum += v1[i] * v2[i];
+    }
+
+    return productSum;
+}
+
+function areOrthogonal(vectors) {
+    for (let i = 0; i < vectors.length; i += 2) {
+        const v1 = vectors[i];
+        const v2 = vectors[i + 1];
+
+        // Calculate the dot product of each vector pair
+        const product = dotProduct(v1, v2);
+
+        // Check if the dot product is zero (orthogonal)
+        if (product !== 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Example usage
+const vectorPairs = [
+    [1, 0],
+    [0, -1],
+    [2, 2],
+    [-1, 1]
+];
+
+const areOrthogonalResult = areOrthogonal(vectorPairs);
+console.log("Are vectors orthogonal?", areOrthogonalResult);
+
